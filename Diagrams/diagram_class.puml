@@ -1,0 +1,69 @@
+@startuml SimplifiedClassDiagram
+
+class Utilisateur {
+    - id: int
+    - nom: String
+    - prenom: String
+    - email: String
+    - motDePasse: String
+    + inscription(nom: String, prenom: String, email: String, motDePasse: String): void
+    + connexion(email: String, motDePasse: String): boolean
+    + deconnexion(): void
+}
+
+class SystemeControleLumiere {
+    - version: String
+    - utilisateurActif: Utilisateur
+    + afficherStatutLumiere(piece: Piece): String
+    + afficherNiveauBatterie(equipement: Equipement): int
+    + controlerLumiere(equipement: Equipement, action: boolean): void
+}
+
+class Piece {
+    - id: int
+    - nom: String
+    + ajouterEquipement(equipement: Equipement): void
+    + supprimerEquipement(equipement: Equipement): void
+}
+
+
+class Equipement {
+    - id: int
+    - nom: String
+    - type: String
+    - statut: boolean
+    - etatBatterie: int
+    - positionInterrupteur: boolean
+    + getStatut(): boolean
+    + setStatut(statut: boolean): void
+    + getNom(): String
+    + getType(): String
+    + obtenirNiveauBatterie(): int
+    + detecterBatterieFaible(): boolean
+    + gererChargeBatterie(): void
+}
+
+class Capteur {
+    - id: int
+    - type: String
+    - etat: boolean
+    - luminosite: int
+    + detecterLumiere(): boolean
+    + transmettreDonnees(): String
+}
+
+class Notification {
+    - id: int
+    - type: String
+    - message: String
+    + envoyerNotification(utilisateur: Utilisateur): void
+}
+
+Utilisateur "1" -- "1" SystemeControleLumiere : "utilise"
+SystemeControleLumiere "1" --> "1..*" Piece : "contrôle"
+Piece "1" --> "1..*" Equipement : "contient"
+Equipement "1" --> "1" Appareil : "est lié à"
+Equipement "1" --> "0..1" Capteur : "peut être un"
+SystemeControleLumiere "1" --> "1..*" Notification : "gère"
+
+@enduml

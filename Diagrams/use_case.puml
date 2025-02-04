@@ -1,0 +1,34 @@
+@startuml
+left to right direction
+
+actor "Utilisateur" as User
+
+rectangle "Application Mobile" {
+    usecase "Allumer la lumière" as TurnOn
+    usecase "Éteindre la lumière" as TurnOff
+    usecase "Vérifier l'état de la lumière" as CheckStatus
+    usecase "Notifier l'utilisateur\n(batterie faible)" as NotifyUser
+}
+
+rectangle "Boîtier Connecté" {
+    usecase "Recevoir commande Bluetooth" as ReceiveCommand
+    usecase "Actionner le servomoteur" as ActivateServo
+    usecase "Envoyer état à l'application" as SendStatus
+    usecase "Détecter batterie faible" as LowBattery
+}
+
+User --> TurnOn
+User --> TurnOff
+User --> CheckStatus
+
+TurnOn --> ReceiveCommand : "Commande ON"
+TurnOff --> ReceiveCommand : "Commande OFF"
+CheckStatus --> SendStatus : "Demande état"
+
+ReceiveCommand --> ActivateServo : "Actionner interrupteur"
+LowBattery --> NotifyUser : "Envoyer notification"
+
+
+TurnOn --|> CheckStatus : "include" 
+ActivateServo --|> NotifyUser : "extend"
+@enduml
