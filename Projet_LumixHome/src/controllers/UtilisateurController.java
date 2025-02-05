@@ -24,3 +24,4 @@ public class UtilisateurController {
         utilisateur.reinitialiserMotDePasse(email);
     }
 }
+
