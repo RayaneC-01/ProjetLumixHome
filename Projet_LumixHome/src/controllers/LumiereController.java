@@ -3,7 +3,7 @@ package controllers;
 import models.Lumiere;
 
 public class LumiereController {
-    private Lumiere lumiere;
+    private   Lumiere lumiere;
 
     public LumiereController(Lumiere lumiere) {
         this.lumiere = lumiere;
