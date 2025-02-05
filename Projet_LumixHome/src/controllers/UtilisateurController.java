@@ -4,7 +4,6 @@ import models.Utilisateur;
 
 public class UtilisateurController {
     private final Utilisateur utilisateur;
-    Gère les actions des utilisateurs comme l'inscription et l'authentification.
     public UtilisateurController(Utilisateur utilisateur) {
         this.utilisateur = utilisateur;
     }
