@@ -29,3 +29,4 @@ public class EquipementController {
         equipement.gererChargeBatterie();
     }
 }
+
