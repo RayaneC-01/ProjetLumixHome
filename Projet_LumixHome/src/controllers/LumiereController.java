@@ -3,12 +3,11 @@ package controllers;
 import models.Lumiere;
 
 public class LumiereController {
-    private   Lumiere lumiere;
+    private final Lumiere lumiere;
 
     public LumiereController(Lumiere lumiere) {
         this.lumiere = lumiere;
     }
-
     public void allumerOuEteindreLumiere() {
         if (lumiere.verifierEtatLumiere()) {
             lumiere.eteindreLumiere();
